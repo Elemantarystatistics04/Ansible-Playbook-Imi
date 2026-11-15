@@ -9,5 +9,46 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
+  netalertx:
+    image: ghcr.io/jokob-sk/netalertx:latest
+    container_name: netalertx
+    network_mode: host
+    restart: unless-stopped
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+      - NET_BIND_SERVICE
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+      - PORT=20211
+    volumes:
+      - netalertx_data:/data
+    tmpfs:
+      - /tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev
+
+  beszel:
+    image: henrygd/beszel:latest
+    container_name: beszel
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - beszel_data:/beszel_data
+
+  beszel-agent:
+    image: henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGT3ZkvXRD9deLfzHMfsnjZ9HSEjeGIVDzmjYSVlUjSf"
+      TOKEN: "5514-55f8abe768-4d9f-dedd9e09e8"
+      HUB_URL: "http://192.168.1.126:8090"
+
 volumes:
   portainer_data:
+  netalertx_data:
+  beszel_data:
