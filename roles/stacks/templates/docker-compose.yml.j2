@@ -44,8 +44,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       LISTEN: 45876
-      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGT3ZkvXRD9deLfzHMfsnjZ9HSEjeGIVDzmjYSVlUjSf"
-      TOKEN: "5514-55f8abe768-4d9f-dedd9e09e8"
+      KEY: "{{ vault_beszel_key }}"
+      TOKEN: "{{ vault_beszel_token }}"
       HUB_URL: "http://192.168.1.126:8090"
 
 volumes:
