@@ -9,23 +9,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
 
-  netalertx:
-    image: ghcr.io/jokob-sk/netalertx:latest
-    container_name: netalertx
-    network_mode: host
-    restart: unless-stopped
-    cap_add:
-      - NET_RAW
-      - NET_ADMIN
-      - NET_BIND_SERVICE
-    environment:
-      - TZ=Asia/Kuala_Lumpur
-      - PORT=20211
-    volumes:
-      - netalertx_data:/data
-    tmpfs:
-      - /tmp:uid=20211,gid=20211,mode=1700,rw,noexec,nosuid,nodev
-
   beszel:
     image: henrygd/beszel:latest
     container_name: beszel
@@ -50,5 +33,4 @@ services:
 
 volumes:
   portainer_data:
-  netalertx_data:
   beszel_data:
