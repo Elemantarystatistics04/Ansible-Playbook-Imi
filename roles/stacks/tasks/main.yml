@@ -1,0 +1,18 @@
+---
+- name: Create stack directory
+  ansible.builtin.file:
+    path: /opt/homelab-stack
+    state: directory
+    mode: '0755'
+
+- name: Deploy Docker Compose file from template
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: /opt/homelab-stack/docker-compose.yml
+    mode: '0600'
+
+- name: Start Docker Compose stack and remove unused n8n container
+  community.docker.docker_compose_v2:
+    project_src: /opt/homelab-stack
+    state: present
+    remove_orphans: true

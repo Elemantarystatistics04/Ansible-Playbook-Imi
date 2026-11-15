@@ -1,0 +1,13 @@
+---
+- name: Install network diagnostic and CLI utilities
+  ansible.builtin.apt:
+    name:
+      - nmap
+      - tcpdump
+      - iperf3
+      - mtr-tiny
+      - net-tools
+      - whois
+      - jq
+    state: present
+    update_cache: yes
