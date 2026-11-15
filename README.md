@@ -22,3 +22,13 @@ ansible-local/
     ├── configs/         # Applies baseline shell/environment configurations
     ├── devtools/        # Installs CLI & network diagnostic tools (nmap, tcpdump, iperf3, mtr-tiny, jq)
     └── stacks/          # Deploys /opt/homelab-stack/docker-compose.yml (Portainer CE on port 9443)
+
+## Active Services & Web UIs (`192.168.1.126`)
+
+| Service | URL | Managed By |
+| :--- | :--- | :--- |
+| CasaOS | `http://192.168.1.126:8080` | CasaOS Native |
+| Nextcloud | `http://192.168.1.126:7580` | CasaOS App Store |
+| Portainer CE | `https://192.168.1.126:9443` | Ansible (`stacks` role) |
+| Beszel Hub + Agent | `http://192.168.1.126:8090` | Ansible (`stacks` role) |
+| WatchYourLAN | `http://192.168.1.126:8840` | Ansible (`stacks` role) |
