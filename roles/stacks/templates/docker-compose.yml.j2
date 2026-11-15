@@ -31,6 +31,26 @@ services:
       TOKEN: "{{ vault_beszel_token }}"
       HUB_URL: "http://192.168.1.126:8090"
 
+  watchyourlan:
+    image: aceberg/watchyourlan:latest
+    container_name: watchyourlan
+    network_mode: host
+    restart: unless-stopped
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    environment:
+      TZ: "Asia/Kuala_Lumpur"
+      IFACES: "enp2s0"
+      HOST: "0.0.0.0"
+      PORT: "8840"
+      TIMEOUT: "60"
+      THEME: "darkly"
+      COLOR: "dark"
+    volumes:
+      - watchyourlan_data:/data/WatchYourLAN
+
 volumes:
   portainer_data:
   beszel_data:
+  watchyourlan_data:
