@@ -12,3 +12,4 @@
   roles:
     - { role: stacks, tags: ['base', 'monitoring'] }
     - { role: redteam_lab, tags: ['redteam'] }
+    - { role: hermes, tags: ['hermes'] }

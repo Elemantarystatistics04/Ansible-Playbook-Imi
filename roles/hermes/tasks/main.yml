@@ -1,0 +1,17 @@
+---
+- name: Create Hermes Agent directory on homelab
+  ansible.builtin.file:
+    path: /opt/hermes-agent
+    state: directory
+    mode: "0755"
+
+- name: Deploy Hermes Agent Docker Compose configuration
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: /opt/hermes-agent/docker-compose.yml
+    mode: "0600"
+
+- name: Start Hermes Agent container
+  community.docker.docker_compose_v2:
+    project_src: /opt/hermes-agent
+    state: present
