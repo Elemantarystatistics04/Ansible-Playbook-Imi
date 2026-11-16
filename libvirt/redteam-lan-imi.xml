@@ -1,0 +1,15 @@
+<network connections='1'>
+  <name>redteam-lan-imi</name>
+  <uuid>15c936ca-1f51-43ab-a103-8b234c403ed3</uuid>
+  <bridge name='virbr1' stp='on' delay='0'/>
+  <mac address='52:54:00:25:28:72'/>
+  <domain name='redteam-lan-imi' localOnly='yes'/>
+  <dns>
+    <host ip='10.10.10.1'>
+      <hostname>gateway</hostname>
+    </host>
+  </dns>
+  <ip address='10.10.10.1' netmask='255.255.255.0' localPtr='yes'>
+  </ip>
+</network>
+
