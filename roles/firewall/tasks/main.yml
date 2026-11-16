@@ -1,0 +1,34 @@
+---
+- name: Install UFW firewall
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+
+- name: Allow SSH from local LAN before enabling UFW
+  community.general.ufw:
+    rule: allow
+    port: "22"
+    proto: tcp
+    src: 192.168.1.0/24
+
+- name: Allow homelab, Cockpit, and Red Team ports strictly from local LAN
+  community.general.ufw:
+    rule: allow
+    port: "{{ item }}"
+    proto: tcp
+    src: 192.168.1.0/24
+  loop:
+    - "8080"   # CasaOS
+    - "7580"   # Nextcloud
+    - "9090"   # Cockpit
+    - "9443"   # Portainer
+    - "8090"   # Beszel
+    - "8840"   # WatchYourLAN
+    - "3000"   # Juice Shop
+    - "8081"   # DVWA
+
+- name: Enable UFW with default deny incoming policy
+  community.general.ufw:
+    state: enabled
+    policy: deny
+    direction: incoming

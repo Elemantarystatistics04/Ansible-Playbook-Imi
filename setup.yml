@@ -10,6 +10,7 @@
 - name: Configure Homelab Server
   hosts: homelab
   roles:
+    - { role: firewall, tags: ['base', 'firewall'] }
     - { role: stacks, tags: ['base', 'monitoring'] }
     - { role: redteam_lab, tags: ['redteam'] }
     - { role: hermes, tags: ['hermes'] }
