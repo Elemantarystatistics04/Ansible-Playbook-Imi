@@ -1,0 +1,16 @@
+---
+- name: Configure Local WSL Environment
+  hosts: localhost
+  connection: local
+  roles:
+    - { role: docker, tags: ['base'] }
+    - { role: configs, tags: ['base'] }
+    - { role: devtools, tags: ['base', 'redteam'] }
+
+- name: Configure Homelab Server
+  hosts: homelab
+  roles:
+    - { role: firewall, tags: ['base', 'firewall'] }
+    - { role: stacks, tags: ['base', 'monitoring'] }
+    - { role: redteam_lab, tags: ['redteam'] }
+    - { role: hermes, tags: ['hermes'] }

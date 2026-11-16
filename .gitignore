@@ -2,4 +2,8 @@
 *.qcow2
 *.iso
 *.bz2
+*.retry
+.vault_pass
+.ansible_vault_pass
+__pycache__/
 .DS_Store

@@ -1,0 +1,17 @@
+---
+- name: Install network and Red Team recon/fuzzing CLI tools
+  ansible.builtin.apt:
+    name:
+      - nmap
+      - tcpdump
+      - iperf3
+      - mtr-tiny
+      - jq
+      - netcat-openbsd
+      - gobuster
+      - ffuf
+      - sqlmap
+      - hydra
+      - dirb
+    state: present
+    update_cache: yes

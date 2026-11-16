@@ -1,0 +1,57 @@
+services:
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - "9443:9443"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    command: --no-setup-token
+
+  beszel:
+    image: henrygd/beszel:latest
+    container_name: beszel
+    restart: unless-stopped
+    ports:
+      - "8090:8090"
+    volumes:
+      - beszel_data:/beszel_data
+
+  beszel-agent:
+    image: henrygd/beszel-agent:latest
+    container_name: beszel-agent
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    environment:
+      LISTEN: 45876
+      KEY: "{{ vault_beszel_key }}"
+      TOKEN: "{{ vault_beszel_token }}"
+      HUB_URL: "http://192.168.1.126:8090"
+
+  watchyourlan:
+    image: aceberg/watchyourlan:latest
+    container_name: watchyourlan
+    network_mode: host
+    restart: unless-stopped
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    environment:
+      TZ: "Asia/Kuala_Lumpur"
+      IFACES: "enp2s0"
+      HOST: "0.0.0.0"
+      PORT: "8840"
+      TIMEOUT: "60"
+      THEME: "darkly"
+      COLOR: "dark"
+    volumes:
+      - watchyourlan_data:/data/WatchYourLAN
+
+volumes:
+  portainer_data:
+  beszel_data:
+  watchyourlan_data:
