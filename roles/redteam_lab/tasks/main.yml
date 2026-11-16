@@ -1,0 +1,17 @@
+---
+- name: Create Red Team lab directory on homelab
+  ansible.builtin.file:
+    path: /opt/redteam-lab
+    state: directory
+    mode: "0755"
+
+- name: Deploy Red Team vulnerable targets compose file
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: /opt/redteam-lab/docker-compose.yml
+    mode: "0644"
+
+- name: Start OWASP Juice Shop and DVWA containers
+  community.docker.docker_compose_v2:
+    project_src: /opt/redteam-lab
+    state: present

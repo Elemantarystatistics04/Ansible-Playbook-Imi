@@ -1,0 +1,14 @@
+services:
+  juice-shop:
+    image: bkimminich/juice-shop:latest
+    container_name: redteam-juice-shop
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+
+  dvwa:
+    image: vulnerables/web-dvwa:latest
+    container_name: redteam-dvwa
+    restart: unless-stopped
+    ports:
+      - "8081:80"

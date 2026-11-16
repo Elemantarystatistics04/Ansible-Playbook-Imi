@@ -1,20 +1,14 @@
 ---
 - name: Configure Local WSL Environment
-  hosts: local
-  become: yes
+  hosts: localhost
+  connection: local
   roles:
-    - role: docker
-      tags: [docker]
-    - role: configs
-      tags: [configs]
-    - role: devtools
-      tags: [devtools]
+    - { role: docker, tags: ['base'] }
+    - { role: configs, tags: ['base'] }
+    - { role: devtools, tags: ['base', 'redteam'] }
 
-- name: Configure Homelab Node Without Touching CasaOS Docker Engine
+- name: Configure Homelab Server
   hosts: homelab
-  become: yes
   roles:
-    - role: devtools
-      tags: [devtools]
-    - role: stacks
-      tags: [stacks]
+    - { role: stacks, tags: ['base', 'monitoring'] }
+    - { role: redteam_lab, tags: ['redteam'] }
