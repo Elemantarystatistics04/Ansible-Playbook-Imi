@@ -34,6 +34,8 @@ Complete operational reference, IP/port map, service directory, and recovery com
 | **Blinko** | http://localhost:1111/ | http://10.241.54.218:1111/ | blinko (+ blinko-postgres) | Self-hosted quick-capture notes and personal knowledge base |
 | **n8n Automation** | http://localhost:5678/ | http://10.241.54.218:5678/ | n8n | Workflow automation engine running locally in WSL2 (`N8N_SECURE_COOKIE=false` for HTTP) |
 | **OWASP Juice Shop** | http://localhost:3000/ | http://10.241.54.218:3000/ | redteam-juice-shop | Intentionally vulnerable modern web application for Red Team / AppSec practice |
+| **CyberChef** | http://localhost:8080/ | http://10.241.54.218:8080/ | big-bear-cyberchef | Data decoding, cryptography, encoding, and CTF analysis Swiss-army knife |
+| **Cockpit Server GUI** | https://localhost:9090/ | https://10.241.54.218:9090/ | cockpit.socket (systemd) | Web-based Linux server administration, real-time telemetry, and browser terminal |
 | **DVWA** | http://localhost:8081/ | http://10.241.54.218:8081/ | redteam-dvwa | Damn Vulnerable Web Application for practicing SQLi, XSS, CSRF, and command injection |
 
 ### Hypervisor & Isolated Red Team Firewall
@@ -57,6 +59,8 @@ Complete operational reference, IP/port map, service directory, and recovery com
     sudo docker start portainer beszel beszel-agent watchyourlan n8n redteam-juice-shop redteam-dvwa
     sudo docker compose -f /var/lib/casaos/apps/big-bear-nextcloud/docker-compose.yml up -d
     sudo docker compose -f /var/lib/casaos/apps/blinko/docker-compose.yml up -d
+    sudo docker compose -f /var/lib/casaos/apps/big-bear-cyberchef/docker-compose.yml up -d
+    sudo systemctl enable --now cockpit.socket
 
 ### C. Nextcloud Trusted Domains & n8n HTTP Cookie Configuration
 
