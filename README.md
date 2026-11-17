@@ -38,6 +38,7 @@ Complete operational reference, IP/port map, service directory, and recovery com
 | **Cockpit Server GUI** | https://localhost:9090/ | https://10.241.54.218:9090/ | cockpit.socket (systemd) | Web-based Linux server administration, real-time telemetry, and browser terminal |
 | **DVWA** | http://localhost:8081/ | http://10.241.54.218:8081/ | redteam-dvwa | Damn Vulnerable Web Application for practicing SQLi, XSS, CSRF, and command injection |
 
+| **Hermes Agent** | http://localhost:9119/ | http://10.241.54.218:9119/ | `hermes-agent` | Autonomous AI agent & web dashboard powered by OpenRouter (Basic Auth enabled) |
 ### Hypervisor & Isolated Red Team Firewall
 
 | Application / Service | Access URL / Endpoint | Host / Runtime | Function |
